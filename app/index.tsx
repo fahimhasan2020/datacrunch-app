@@ -25,7 +25,7 @@ function AuthStack() {
         headerShown:false
     }}>
     <Stack.Screen name="Login" component={Login} />     
-    <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+    <Stack.Screen name="PrivacyPolicy" options={{headerShown:true, title:'Privacy Policy'}} component={PrivacyPolicy} />
     </Stack.Navigator>
   );
 }
