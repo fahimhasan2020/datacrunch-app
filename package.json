@@ -4,8 +4,13 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "android:apk": "cd android && ./gradlew assembleRelease",
+    "android:bundle": "cd android && ./gradlew bundleRelease",
+    "ios:build": "cd ios && xcodebuild -workspace DataCrunchDemoFahimHasan.xcworkspace -scheme DataCrunchDemoFahimHasan -configuration Release -derivedDataPath build",
+    "ios:archive": "cd ios && xcodebuild -workspace DataCrunchDemoFahimHasan.xcworkspace -scheme DataCrunchDemoFahimHasan -configuration Release -archivePath build/DataCrunchDemoFahimHasan.xcarchive archive",
+    "ios:export": "cd ios && xcodebuild -exportArchive -archivePath build/DataCrunchDemoFahimHasan.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/Export",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint"
   },

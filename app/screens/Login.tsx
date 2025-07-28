@@ -1,16 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
 import debounce from 'lodash.debounce';
 import React, { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
-    ActivityIndicator,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import useAuthStore from '../store/useAuthStore';
 const Login = () => {
+  const navigation = useNavigation();
   const setLoggedIn = useAuthStore((state) => state.setLoggedIn);
   const { control, handleSubmit, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
@@ -23,6 +25,10 @@ const Login = () => {
       setLoading(false);
     }, 1500);
   };
+
+  const navigateToPrivacy = ()=>{
+    navigation.navigate('PrivacyPolicy' as never);
+  }
 
   const debouncedLogin = useCallback(debounce(handleSubmit(onLogin), 500), []);
 
@@ -80,6 +86,7 @@ const Login = () => {
       >
         {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Login</Text>}
       </TouchableOpacity>
+      <TouchableOpacity style={styles.privacyButton} onPress={navigateToPrivacy}><Text style={styles.privacyText}>Privacy Policy</Text></TouchableOpacity>
     </View>
   );
 };
@@ -92,6 +99,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 24,
     backgroundColor: '#f4f4f4',
+  },
+  privacyButton:{
+    alignSelf:'center',
+    marginTop:100
+  },
+  privacyText:{
+    fontSize:12,
+    fontWeight:'bold',
+    color:'blue',
+    textDecorationLine:'underline'
   },
   title: {
     fontSize: 28,

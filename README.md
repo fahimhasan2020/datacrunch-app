@@ -39,7 +39,7 @@ Build this app for android using following command
 Build this app for ios using following command
 
 ```bash
-  npm run android:ios
+  npm run ios:build
 ```
 
 ## Submission
